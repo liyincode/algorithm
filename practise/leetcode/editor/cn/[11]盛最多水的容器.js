@@ -25,14 +25,7 @@
  * @return {number}
  */
 var maxArea = function(height) {
-    let maxArea = 0;
-    for (let i = 0, j = height.length - 1; i < j;) {
-        const minHeight = height[i] < height[j] ? height[i++] : height[j--];
-        const area = (j - i + 1) * minHeight;
-        maxArea = Math.max(maxArea, area);
-    }
 
-    return maxArea;
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -49,6 +42,20 @@ console.log(maxArea(testData));
 //             const area = (j - i) * Math.min(height[i], height[j]);
 //             maxArea = Math.max(maxArea, area);
 //         }
+//     }
+//
+//     return maxArea;
+// };
+
+/**
+ 2. 双指针左右夹逼
+ */
+// var maxArea = function(height) {
+//     let maxArea = 0;
+//     for (let i = 0, j = height.length - 1; i < j;) {
+//         const minHeight = height[i] < height[j] ? height[i++] : height[j--];
+//         const area = minHeight * (j - i + 1);
+//         maxArea = Math.max(maxArea, area);
 //     }
 //
 //     return maxArea;
