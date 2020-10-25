@@ -11,13 +11,23 @@ class LinkedList {
     }
 
     reverseList() {
+        /**
+         *
+         * head -> aaa -> bbb -> ccc -> ddd
+         * root: head                             currentNode: aaa -> bbb -> ccc -> ddd
+         * root: head -> aaa                      currentNode: bbb -> ccc -> ddd
+         * root: head -> bbb -> aaa               currentNode: ccc -> ddd
+         * root: head -> ccc -> bbb -> aaa        currentNode: ddd
+         * root: head -> ddd -> ccc -> bbb -> aaa currentNode:
+         */
         const root = new Node('head');
         let currentNode = this.head.next;
-        while (currentNode !== null) {
-            const next = currentNode.next;
+        while (currentNode) {
+            const temp = currentNode.next;
             currentNode.next = root.next;
+            // 反转后的结果给 root
             root.next = currentNode;
-            currentNode = next;
+            currentNode = temp;
         }
         this.head = root;
     }
@@ -51,9 +61,9 @@ class LinkedList {
 }
 
 let list = new LinkedList();
-list.insert('chen', 'head');
-list.insert('curry', 'chen');
-list.insert('sang', 'head');
-list.insert('zhao', 'head');
+list.insert('aaa', 'head');
+list.insert('bbb', 'aaa');
+list.insert('ccc', 'bbb');
+list.insert('ddd', 'ccc');
 list.reverseList();
 list.display();
