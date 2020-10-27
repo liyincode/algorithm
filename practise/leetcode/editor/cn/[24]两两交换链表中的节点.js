@@ -66,7 +66,7 @@ var swapPairs = function(head) {
 //     head.next = swapPairs(newHead.next);
 //     newHead.next = head;
 //
-//     return head;
+//     return newHead;
 // };
 
 /**
@@ -85,5 +85,22 @@ var swapPairs = function(head) {
 //         node2.next = node1;
 //         temp = node1;
 //     }
+//     return dummyHead.next;
+// };
+// 这种交换节点的方式也是可以的
+// var swapPairs = function(head) {
+//     const dummyHead = new ListNode(0);
+//     dummyHead.next = head;
+//     let temp = dummyHead;
+//
+//     while (temp.next !== null && temp.next.next !== null) {
+//         let node1 = temp.next;
+//         let node2 = temp.next.next;
+//         node1.next = node2.next;
+//         node2.next = node1;
+//         temp.next = node2;
+//         temp = node1;
+//     }
+//
 //     return dummyHead.next;
 // };
