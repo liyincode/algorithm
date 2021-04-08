@@ -1,7 +1,7 @@
 class Node {
-    constructor(element) {
-        this.element = element;
+    constructor(value) {
         this.next = null;
+        this.value = value;
     }
 }
 
@@ -10,99 +10,130 @@ class LinkedList {
         this.head = new Node('head');
     }
 
-    reverseList() {
-        /**
-         *
-         * head -> aaa -> bbb -> ccc -> ddd
-         * root: head                             currentNode: aaa -> bbb -> ccc -> ddd
-         * root: head -> aaa                      currentNode: bbb -> ccc -> ddd
-         * root: head -> bbb -> aaa               currentNode: ccc -> ddd
-         * root: head -> ccc -> bbb -> aaa        currentNode: ddd
-         * root: head -> ddd -> ccc -> bbb -> aaa currentNode:
-         */
-        const root = new Node('head');
-        let currentNode = this.head.next;
-        while (currentNode) {
-            const temp = currentNode.next;
-            currentNode.next = root.next;
-            // 反转后的结果给 root
-            root.next = currentNode;
-            currentNode = temp;
+    insert(preValue, newValue) {
+        const newNode = new Node(newValue);
+        const preNode = this.findNodeByValue(preValue);
+        if (!preNode) {
+            console.log('没有指定前置节点');
         }
-        this.head = root;
+        newNode.next = preNode.next;
+        preNode.next = newNode;
     }
 
-    checkCircle() {
-        let fast = this.head.next;
-        let slow = this.head;
-        while (fast !== null && fast.next !== null) {
-            fast = fast.next.next;
-            slow = slow.next;
-            if (slow === fast) return true;
-        }
-
-        return false;
-    }
-
-    insert(newElement, element) {
-        const currentNode = this.findByValue(element);
-        if (currentNode === -1) {
-            console.log('未找到插入位置');
-            return;
-        }
-        const newNode = new Node(newElement);
-        newNode.next = currentNode.next;
-        currentNode.next = newNode;
-    }
-
-    /**
-     * 在链表头部插入节点
-     * @param value
-     */
-    insertAtHead(value) {
-        const newNode = new Node(value);
+    insertAtHead(newValue) {
+        let newNode = new Node(newValue);
         newNode.next = this.head.next;
         this.head.next = newNode;
     }
 
-    /**
-     * 链表尾部插入节点
-     * @param value
-     */
-    insertAtTail(value) {
-      const newNode = new Node(value);
-      let currentNode = this.head;
-      while (currentNode.next !== null ) {
-          currentNode = currentNode.next;
-      }
-      currentNode.next = newNode;
-    }
-
-    findByValue(data) {
+    insertAtTail(newValue) {
+        let newNode = new Node(newValue);
         let currentNode = this.head;
-        while (currentNode !== null && currentNode.element !== data) {
+        while (currentNode.next !== null) {
             currentNode = currentNode.next;
         }
-        return currentNode === null ? -1 : currentNode;
+        currentNode.next = newNode;
+
+    }
+
+    /**
+     * 给指定节点之后插入
+     * @param targetNode
+     * @param value
+     */
+    insertAfter(targetNode, value) {
+     if (!targetNode) {
+         return;
+     }
+
+     const newNode = new Node(value);
+     newNode.next = targetNode.next;
+     targetNode.next = newNode;
+    }
+
+    /**
+     * 删除给定节点之后的节点
+     * @param targetNode
+     */
+    deleteNextNode(targetNode) {
+        if (targetNode === null || targetNode.next === null) {
+            return;
+        }
+
+        targetNode.next = targetNode.next.next;
+    }
+
+    /**
+     * 删除指定节点
+     * @param targetNode
+     */
+    deleteThisNode(targetNode) {
+        if (targetNode === null | targetNode.next === null) {
+            return;
+        }
+
+        if (targetNode === this.head) {
+            this.head = this.head.next;
+            return;
+        }
+
+        let prevNode = new Node();
+        while (prevNode.next !== null && prevNode.next !== targetNode) {
+            prevNode = prevNode.next;
+        }
+
+        if (prevNode.next === null) {
+            return;
+        }
+
+        prevNode.next = prevNode.next.next;
+    }
+
+    deleteThisNode2(targetNode) {
+        if (targetNode === null | this.head === null) {
+            return;
+        }
+
+        const newHead = new Node();
+        newHead.next = this.head;
+        let prevNode = newHead;
+
+        while (prevNode.next !== null && prevNode.next !== targetNode) {
+            prevNode = prevNode.next;
+        }
+
+        if (prevNode.next === null) {
+            return;
+        }
+
+        prevNode.next = prevNode.next.next;
+        this.head = newHead.next;
+    }
+
+    findNodeByValue(value) {
+        let targetNode = this.head;
+        while (targetNode !== null && targetNode.value !== value) {
+            targetNode = targetNode.next;
+        }
+
+        return targetNode;
     }
 
     display() {
         let currentNode = this.head;
-        while (currentNode !== null) {
-            console.log(currentNode.element);
+        while ( currentNode !== null) {
+            console.log(currentNode.value)
             currentNode = currentNode.next;
         }
     }
 
-    // 获取第 K 个节点
-    getByIndex(k) {
-        // 用 p 来遍历链表
-        let p = this.head;
-        let i = 0;
-        while (p !== null) {
-            if (i === k) return p;
-            p = p.next;
-            i++;
+    getByIndex(targetIndex) {
+        let index = 0;
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            if (index === targetIndex) return currentNode
+            currentNode = currentNode.next;
+            index++;
         }
 
         return null;
@@ -110,11 +141,10 @@ class LinkedList {
 }
 
 let list = new LinkedList();
-list.insert('aaa', 'head');
-list.insert('bbb', 'aaa');
-list.insert('ccc', 'bbb');
-list.insert('ddd', 'ccc');
-list.insertAtHead(11)
-list.insertAtTail(12);
+// list.insert('head', 11);
+// list.insert(11, 22);
+// list.insert(22, 33);
+// list.insertAtHead(55)
+list.insertAtTail('tail')
 list.display();
-
+console.log(list.getByIndex(2));
