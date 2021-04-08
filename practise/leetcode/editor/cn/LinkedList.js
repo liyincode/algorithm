@@ -32,6 +32,18 @@ class LinkedList {
         this.head = root;
     }
 
+    checkCircle() {
+        let fast = this.head.next;
+        let slow = this.head;
+        while (fast !== null && fast.next !== null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow === fast) return true;
+        }
+
+        return false;
+    }
+
     insert(newElement, element) {
         const currentNode = this.findByValue(element);
         if (currentNode === -1) {
@@ -41,6 +53,29 @@ class LinkedList {
         const newNode = new Node(newElement);
         newNode.next = currentNode.next;
         currentNode.next = newNode;
+    }
+
+    /**
+     * 在链表头部插入节点
+     * @param value
+     */
+    insertAtHead(value) {
+        const newNode = new Node(value);
+        newNode.next = this.head.next;
+        this.head.next = newNode;
+    }
+
+    /**
+     * 链表尾部插入节点
+     * @param value
+     */
+    insertAtTail(value) {
+      const newNode = new Node(value);
+      let currentNode = this.head;
+      while (currentNode.next !== null ) {
+          currentNode = currentNode.next;
+      }
+      currentNode.next = newNode;
     }
 
     findByValue(data) {
@@ -58,6 +93,20 @@ class LinkedList {
             currentNode = currentNode.next;
         }
     }
+
+    // 获取第 K 个节点
+    getByIndex(k) {
+        // 用 p 来遍历链表
+        let p = this.head;
+        let i = 0;
+        while (p !== null) {
+            if (i === k) return p;
+            p = p.next;
+            i++;
+        }
+
+        return null;
+    }
 }
 
 let list = new LinkedList();
@@ -65,5 +114,7 @@ list.insert('aaa', 'head');
 list.insert('bbb', 'aaa');
 list.insert('ccc', 'bbb');
 list.insert('ddd', 'ccc');
-list.reverseList();
+list.insertAtHead(11)
+list.insertAtTail(12);
 list.display();
+
