@@ -48,3 +48,39 @@ var defangIPaddr = function(address) {
 /*var defangIPaddr = function(address) {
   return address.replace(/\./g, '[.]');
 };*/
+
+// for 循环暴力法
+// var defangIPaddr = function(address) {
+//     if (!address) return '';
+//     let result = '';
+//     for (let i = 0; i < address.length; i++) {
+//         const char = address.charAt(i);
+//         if (char === '.') {
+//             result += '[.]';
+//         } else {
+//             result += char;
+//         }
+//     }
+//
+//     return result;
+// };
+
+// 数组法
+// var defangIPaddr = function(address) {
+//     if (!address) return '';
+//     let strArr = [];
+//     let k = 0;
+//     for (let i = 0; i < address.length; i++) {
+//         const target = address.charAt(i);
+//         if (target === '.') {
+//             strArr[k++] = '[';
+//             strArr[k++] = '.';
+//             strArr[k++] = ']';
+//         } else {
+//             strArr[k] = address[i];
+//             k++;
+//         }
+//     }
+//
+//     return strArr.join('');
+// };
