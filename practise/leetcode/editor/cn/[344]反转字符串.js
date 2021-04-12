@@ -26,16 +26,34 @@
  * @return {void} Do not return anything, modify s in-place instead.
  */
 var reverseString = function(s) {
-    let i = 0, j = s.length - 1;
-    for (let i = 0; i < s.length / 2; i++) {
-        const temp = s[i];
-        s[i] = s[j];
-        s[j] = temp;
-        j--;
-    }
-
-    console.log(s);
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
 reverseString(["H","a","n","n","a","h"]);
+
+// var reverseString = function(s) {
+//     let i = 0, j = s.length - 1;
+//     for (let i = 0; i < s.length + 1 / 2; i++) {
+//         const temp = s[i];
+//         s[i] = s[j];
+//         s[j] = temp;
+//         j--;
+//     }
+//
+//     console.log(s);
+// };
+
+// 双指针法
+//var reverseString = function(s) {
+//     let i = 0, j = s.length - 1;
+//     // i < j 是奇数判断条件，i === j 是偶数判断条件
+//     while (i <= j) {
+//         const temp = s[i];
+//         s[i] = s[j];
+//         s[j] = temp;
+//         i++;
+//         j--;
+//     }
+//
+//     console.log(s);
+// };
