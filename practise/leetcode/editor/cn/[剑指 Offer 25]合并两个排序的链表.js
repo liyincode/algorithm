@@ -34,26 +34,7 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
-  let head = new ListNode();
-  let curr = head;
 
-  while (l1 && l2) {
-    if (l1.val >= l2.val) {
-      curr.next = l2;
-      l2 = l2.next;
-    } else {
-      curr.next = l1;
-      l1 = l1.next;
-    }
-
-    curr = curr.next;
-
-
-  }
-    if (l1) curr.next = l1;
-    if (l2) curr.next = l2;
-
-    return head.next;
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -80,31 +61,31 @@ function display(head) {
   }
 }
 
-// 循环迭代
-var mergeTwoLists = function(l1, l2) {
-  // 新链表迭代
-  let head = new ListNode();
-  // 新链表指针
-  let curr = head;
-
-  // l1 l2 作为指针使用
-  while (l1 && l2) {
-    if (l1.val >= l2.val) {
-      // 数据小的放入新链表
-      curr.next = l2;
-      // 数据小的指针往前走一步
-      l2 = l2.next;
-    } else {
-      curr.next = l1;
-      l1 = l1.next;
-    }
-
-    // 新链表指针向前走
-    curr = curr.next;
-  }
-    // 如果最后 l1 指针不为 null，说明 l1 指针指向的节点还没有加入新链表
-    if (l1) curr.next = l1;
-    if (l2) curr.next = l2;
-
-    return head.next;
-};
+// // 循环迭代
+// var mergeTwoLists = function(l1, l2) {
+//   // 新链表迭代
+//   let head = new ListNode();
+//   // 新链表指针
+//   let curr = head;
+//
+//   // l1 l2 作为指针使用
+//   while (l1 && l2) {
+//     if (l1.val >= l2.val) {
+//       // 数据小的放入新链表
+//       curr.next = l2;
+//       // 数据小的指针往前走一步
+//       l2 = l2.next;
+//     } else {
+//       curr.next = l1;
+//       l1 = l1.next;
+//     }
+//
+//     // 新链表指针向前走
+//     curr = curr.next;
+//   }
+//     // 如果最后 l1 指针不为 null，说明 l1 指针指向的节点还没有加入新链表
+//     if (l1) curr.next = l1;
+//     if (l2) curr.next = l2;
+//
+//     return head.next;
+// };
