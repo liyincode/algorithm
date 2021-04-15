@@ -35,27 +35,24 @@ function ListNode(val) {
  */
 var getKthFromEnd = function(head, k) {
   if (!head || k <= 0) return null;
-  let curr = head;
+
+  let slow = head;
+  let fast = head;
+
+  // fast 先走 k 步
   let count = 0;
-  while (curr) {
+  while (count < k) {
     count++;
-    curr = curr.next;
+    fast = fast.next
   }
 
-  console.log(count);
-
-  const target = count - k + 1;
-  console.log('target', target);
-  let curr2 = head;
-  let count2 = 1;
-  while (curr2) {
-    console.log('当前', count2, curr2);
-    if (count2 === target) return curr2;
-    count2++;
-    curr2 = curr2.next;
+  // slow fast 同时走一步，直到 fast 为 null
+  while (fast) {
+    fast = fast.next;
+    slow = slow.next;
   }
 
-  return null;
+  return slow;
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -79,8 +76,57 @@ function display(head) {
   }
 }
 
-display(node1);
+// display(node1);
 
-const result = getKthFromEnd(node1, 1);
+const result = getKthFromEnd(node1, 2);
 console.log('result = ', result);
+
+// 先算出链表长度，然后 n - k
+//var getKthFromEnd = function(head, k) {
+//   if (!head || k <= 0) return null;
+//   let curr = head;
+//   let count = 0;
+//   while (curr) {
+//     count++;
+//     curr = curr.next;
+//   }
+//
+//   console.log(count);
+//
+//   const target = count - k + 1;
+//   console.log('target', target);
+//   let curr2 = head;
+//   let count2 = 1;
+//   while (curr2) {
+//     console.log('当前', count2, curr2);
+//     if (count2 === target) return curr2;
+//     count2++;
+//     curr2 = curr2.next;
+//   }
+//
+//   return null;
+// };
+
+// 快慢指针
+//var getKthFromEnd = function(head, k) {
+//   if (!head || k <= 0) return null;
+//
+//   let slow = head;
+//   let fast = head;
+//
+//   // fast 先走 k 步
+//   let count = 0;
+//   while (count < k) {
+//     count++;
+//     fast = fast.next
+//   }
+//
+//   // slow fast 同时走一步，直到 fast 为 null
+//   while (fast) {
+//     fast = fast.next;
+//     slow = slow.next;
+//   }
+//
+//   return slow;
+// };
 
