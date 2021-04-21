@@ -50,26 +50,21 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
-  if (!head) return head;
 
-  let curr = head;
-  while (curr.next) {
-    if (curr.val === curr.next.val) {
-      curr.next = curr.next.next;
-    } else {
-      curr = curr.next;
-    }
-  }
-
-  return head;
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
-const node5 = new ListNode(5);
-const node4 = new ListNode(3, node5);
-const node3 = new ListNode(3, node4);
-const node2 = new ListNode(2, node3);
-const node1 = new ListNode(2, node2);
+let node1 = new ListNode(1);
+let node2 = new ListNode(1);
+let node3 = new ListNode(2);
+let node4 = new ListNode(2);
+let node5 = new ListNode(3);
+let node6 = new ListNode(4);
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+node4.next = node5;
+node5.next = node6;
 
 
 let display = head => {
@@ -117,4 +112,55 @@ display(result);
 //   }
 //
 //   return head;
+// };
+
+// var deleteDuplicates = function(head) {
+//   if (!head) return head;
+//
+//   // 栈
+//   let newHead = new ListNode(-111);
+//   // 指向栈顶的指针
+//   let tail = newHead;
+//   let curr = head;
+//   while (curr) {
+//     if (tail.val !== curr.val) {
+//       /**
+//        * 将链表放入链表中
+//        */
+//       tail.next = curr;
+//       tail = curr;
+//     }
+//
+//     curr = curr.next;
+//   }
+//
+//   tail.next = null;
+//
+//   return newHead.next;
+// };
+
+//var deleteDuplicates = function(head) {
+//   if (!head) return head;
+//
+//   // 栈
+//   let newHead = new ListNode(-111);
+//   // 指向栈顶的指针
+//   let tail = newHead;
+//   let curr = head;
+//   while (curr) {
+//     const tmp = curr.next;
+//     if (tail.val !== curr.val) {
+        /*
+          将单个节点放入结果链表中
+         */
+//       tail.next = curr;
+//       tail = curr;
+//       curr.next = null;
+//     }
+//
+//     curr = tmp;
+//   }
+//
+//
+//   return newHead.next;
 // };
