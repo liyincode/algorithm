@@ -43,6 +43,7 @@
 var fib = function(n) {
 
 };
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 
@@ -61,4 +62,20 @@ console.log(fib(45))
 //
 //   temps[n] = (calc(n - 1, temps) + calc(n - 2, temps)) % 1000000007;
 //   return temps[n];
+// }
+
+// 递归，map
+// var fib = function(n) {
+//     const map = new Map();
+//     return getFib(map, n);
+// };
+//
+// const getFib = (map, n) => {
+//     if (n === 0) return 0;
+//     if (n === 1) return 1;
+//     if (map.has(n)) return map.get(n);
+//
+//     const result = (getFib(map, n - 1) + getFib(map, n - 2)) % 1000000007;
+//     map.set(n, result);
+//     return result;
 // }
