@@ -31,6 +31,20 @@
  * @return {number}
  */
 var waysToStep = function(n) {
+    if (n === 1) return 1;
+    if (n === 2) return 2;
+    if (n === 3) return 4;
+
+    let a = 1, b = 2, c = 4, d = 0;
+
+    for (let i = 4; i <= n; i++) {
+        d = (a + b + c) % 1000000007;
+        a = b;
+        b = c;
+        c = d;
+    }
+
+    return d;
 
 };
 //leetcode submit region end(Prohibit modification and deletion)
@@ -54,4 +68,23 @@ console.log(waysToStep(10))
 //     }
 //
 //     return dp[n];
+// };
+
+// O(1) 空间复杂度迭代
+//var waysToStep = function(n) {
+//     if (n === 1) return 1;
+//     if (n === 2) return 2;
+//     if (n === 3) return 4;
+//
+//     let a = 1, b = 2, c = 4, d = 0;
+//
+//     for (let i = 4; i <= n; i++) {
+//         d = (a + b + c) % 1000000007;
+//         a = b;
+//         b = c;
+//         c = d;
+//     }
+//
+//     return d;
+//
 // };
