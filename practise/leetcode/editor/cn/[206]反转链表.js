@@ -82,3 +82,15 @@ function display(head) {
 //
 //     return newHead;
 // };
+
+// 递归
+//var reverseList = function(head) {
+//     if (head === null) return null;
+//     if (head.next === null) return head;
+//
+//     let newNode = reverseList(head.next);
+//     head.next.next = head;
+//     head.next = null
+//
+//     return newNode;
+// };
