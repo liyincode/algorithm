@@ -66,18 +66,20 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
+var hasCycle = function (head) {
 
 };
+
 //leetcode submit region end(Prohibit modification and deletion)
- function ListNode(val) {
-     this.val = val;
-     this.next = null;
- }
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
+
 let head = new ListNode(1);
- head.next = new ListNode(2);
- head.next.next = new ListNode(3);
- head.next.next.next = head;
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+head.next.next.next = head;
 
 console.log(hasCycle(head));
 // 标记法
@@ -108,7 +110,7 @@ console.log(hasCycle(head));
 // };
 
 // 快慢指针
-var hasCycle = function(head) {
+var hasCycle = function (head) {
     if (!head || !head.next) return false;
 
     let slow = head, fast = head.next;

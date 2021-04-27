@@ -64,3 +64,24 @@ const rPow = function (x, n) {
 //leetcode submit region end(Prohibit modification and deletion)
 
 console.log(myPow(2, -8));
+
+/**
+ * 偶数 n/2 * n/2
+ * 奇数 n/2 * n/2 * x
+  */
+// var myPow = function(x, n) {
+//     if (n >= 0) return rPow(x, n);
+//     else return 1 / (rPow(x, -1 * (n + 1)) * n);
+// };
+//
+// const rPow = function (x, n) {
+//     console.log({ x, n})
+//     if (n === 0) return 1;
+//     const halfPow = rPow(x, Math.floor(n/2));
+//     console.log({x, n, halfPow});
+//     if (n % 2 === 1) {
+//         return halfPow * halfPow * x;
+//     } else {
+//         return halfPow * halfPow;
+//     }
+// }

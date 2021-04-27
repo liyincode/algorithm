@@ -47,11 +47,21 @@
  * @return {string}
  */
 var reverseWords = function(s) {
+    const arr = s.trim().split(' ');
+    let result = '';
+    for (let i = arr.length - 1; i >= 0; i--) {
+        if (arr[i] !== '') {
+            result = result + ' ' + arr[i];
+        } else if (arr[i] === '' && arr[i - 1] !== '') {
+            result = result + '';
+        }
+    }
 
+    return result.trim();
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
-console.log(reverseWords("a good   example"));
+console.log(reverseWords("  a good   example"));
 
 /*var reverseWords = function(s) {
   let arr = s.trim().split(' ');

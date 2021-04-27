@@ -68,7 +68,7 @@ class LinkedList {
      * @param targetNode
      */
     deleteThisNode(targetNode) {
-        if (targetNode === null | targetNode.next === null) {
+        if (targetNode === null || targetNode.next === null) {
             return;
         }
 
