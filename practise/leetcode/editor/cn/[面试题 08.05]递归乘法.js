@@ -30,18 +30,22 @@
  * @return {number}
  */
 var multiply = function(A, B) {
-    if (A === 0 || B === 0) return 0;
-    if (A === 1) return B;
-    const half = multiply(Math.floor(A / 2), B);
-    if (A % 2 === 1) {
-        return half + half + B;
-    } else {
-        return half + half;
-    }
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
-console.log(multiply(4, 8));
+console.log(multiply(797231563, 2));
+
+// 原始方法
+//var multiply = function(A, B) {
+//     if (A === 0 || B === 0) return 0;
+//     if (A === 1) return B;
+//
+//     if (A % 2 === 1) {
+//         return multiply(Math.floor(A / 2), B) + multiply(Math.floor(A / 2), B) + B;
+//     } else {
+//         return multiply(Math.floor(A / 2), B) + multiply(Math.floor(A / 2), B);
+//     }
+// };
 
 /**
  * 奇数 A/2*B + A/2*B + B
@@ -55,5 +59,20 @@ console.log(multiply(4, 8));
 //         return half + half + B;
 //     } else {
 //         return half + half;
+//     }
+// };
+
+// 时间复杂度优化解法，虽然都是O(logn) 但这个次数少
+//var multiply = function(A, B) {
+//     if (A === 0 || B === 0) return 0;
+//     let n = Math.min(A, B);
+//     let k = Math.max(A, B);
+//     if (n === 1) return k;
+//     const halfValue = multiply(Math.floor(n / 2), k);
+//
+//     if (n % 2 === 1) {
+//         return halfValue + halfValue + k;
+//     } else {
+//         return halfValue + halfValue;
 //     }
 // };
