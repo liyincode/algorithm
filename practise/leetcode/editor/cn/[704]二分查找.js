@@ -36,23 +36,30 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let low = 0;
-    let high = nums.length - 1;
 
-    while (low <= high) {
-        const mid = low + Math.floor((high - low) / 2);
-
-        if (nums[mid] === target) {
-            return mid;
-        }
-
-        if (target > nums[mid]) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
-
-    return -1;
 };
 //leetcode submit region end(Prohibit modification and deletion)
+
+const testData = [-1,0,3,5,9,12];
+console.log(search(testData, 9))
+
+//var search = function(nums, target) {
+//     let low = 0;
+//     let high = nums.length - 1;
+//
+//     while (low <= high) {
+//         // Math.floor 的作用取到整数
+//         // (low + high) / 2 在数量大的话会性能很慢
+//         const mid = low + Math.floor((high - low) / 2);
+//
+//         if (nums[mid] === target) {
+//             return mid;
+//         } else if (nums[mid] < target) {
+//             low = mid + 1;
+//         } else {
+//             high = mid - 1;
+//         }
+//     }
+//
+//     return -1;
+// };
