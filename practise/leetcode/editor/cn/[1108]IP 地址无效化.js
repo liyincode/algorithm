@@ -67,20 +67,23 @@ var defangIPaddr = function(address) {
 
 // 数组法
 // var defangIPaddr = function(address) {
-//     if (!address) return '';
-//     let strArr = [];
-//     let k = 0;
-//     for (let i = 0; i < address.length; i++) {
-//         const target = address.charAt(i);
-//         if (target === '.') {
-//             strArr[k++] = '[';
-//             strArr[k++] = '.';
-//             strArr[k++] = ']';
-//         } else {
-//             strArr[k] = address[i];
-//             k++;
-//         }
-//     }
+//   if (!address) return '';
 //
-//     return strArr.join('');
+//   let result = [];
+//   // 这里得用数组自己的索引，如果用 i 的话，赋值时会出现覆盖的问题
+//   let k = 0;
+//   for (let i = 0; i < address.length; i++) {
+//     const target = address[i];
+//     if (target === '.') {
+//       result[k++] = '[';
+//       result[k++] = '.';
+//       result[k++] = ']';
+//     } else {
+//       result[k] = target;
+//       k++;
+//     }
+//   }
+//
+//   // join() 默认用 , 分隔，join('') 默认会过滤元素之间的字符
+//   return result.join('');
 // };
