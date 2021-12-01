@@ -47,21 +47,11 @@
  * @return {string}
  */
 var reverseWords = function(s) {
-    const arr = s.trim().split(' ');
-    let result = '';
-    for (let i = arr.length - 1; i >= 0; i--) {
-        if (arr[i] !== '') {
-            result = result + ' ' + arr[i];
-        } else if (arr[i] === '' && arr[i - 1] !== '') {
-            result = result + '';
-        }
-    }
 
-    return result.trim();
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
-console.log(reverseWords("  a good   example"));
+console.log(reverseWords("b  a good   example"));
 
 /*var reverseWords = function(s) {
   let arr = s.trim().split(' ');
@@ -80,15 +70,48 @@ console.log(reverseWords("  a good   example"));
 
 // 双指针法
 // var reverseWords = function(s) {
-//   const data = s.trim();
-//   let i = data.length - 1, j = i;
-//   let result = '';
-//   while (i >= 0) {
-//     while (i >= 0 && data.charAt(i) !== ' ') i--;
-//     result = result + data.substring(i + 1, j + 1) + ' ';
-//     while (i >= 0 && data.charAt(i) === ' ') i--;
-//     j = i;
-//   }
+//     const data = s.trim();
+//     // 从后往前循环
+//     let i = data.length - 1, j = i;
 //
-//   return result.trim();
+//     let result = '';
+//     while (i >= 0) {
+//         // 筛选出单词
+//         while (i >= 0 && data.charAt(i) !== ' ') i--;
+//         // 单词拼接到结果字符串里
+//         result += data.substring(i + 1, j + 1) + ' ';
+//         // 过滤掉这个单词前的空格
+//         while (i >= 0 && data.charAt(i) === ' ') i--;
+//         j = i;
+//     }
+//
+//     // 删除最后的空格
+//     return result.trim();
+// };
+
+// 分离单词之后翻转
+// var reverseWords = function(s) {
+//     const arr = [];
+//
+//     // 分离出其中的单词，然后组建成数组
+//     let word = '';
+//     for (let i = 0; i < s.length; i++) {
+//         const target = s.charAt(i);
+//         if (target !== ' ') {
+//             word += target;
+//         } else if (word !== '' && target === ' ') {
+//             arr.push(word);
+//             word = ''
+//         }
+//     }
+//     if (word !== '') arr.push(word);
+//
+//     // 翻转
+//     for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+//         const temp = arr[i];
+//         arr[i] = arr[j];
+//         arr[j] = temp
+//     }
+//
+//     return arr.join(' ');
 // };
