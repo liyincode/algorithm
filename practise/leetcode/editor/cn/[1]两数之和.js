@@ -47,13 +47,20 @@ console.log(twoSum([2, 7, 11, 15], 9));
  * 把每次循环的数组元素的值记下，放到对象中，如果之后循环里，对象以 target - b 为属性，有对应的值的话，就找到了
  */
 // var twoSum = function(nums, target) {
-//     let map = {};
-//     for (let i = 0; i < nums.length; i++) {
-//         const currentValue = nums[i];
-//         const index = map[target - currentValue];
-//         if (index !== undefined) return [index, i];
-//         map[currentValue] = i;
+//   // 以 num[i] 为 key，i 为 value
+//   let map = {};
+//
+//   for (let i = 0; i < nums.length; i++) {
+//     const index = map[target - nums[i]];
+//     // 这里不能为 if (index) 因为 index === 0 的时候会走 else，用 undefined 更为合适
+//     if (index !== undefined) {
+//       // target - num[i] 的差值如果在 map 中找到，就说明 for 循环之前的值里有满足情况的
+//       return [i, index];
+//     } else {
+//       // 将不满足的存入 map
+//       map[nums[i]] = i;
 //     }
+//   }
 // };
 
 // 快慢指针
