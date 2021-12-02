@@ -26,20 +26,19 @@ var isPalindrome = function(s) {
 
 };
 //leetcode submit region end(Prohibit modification and deletion)
-console.log(isPalindrome('dA man, a plan, a canal: Panama'))
+console.log(isPalindrome('ababa'))
 
 
 // for 循环翻转然后再对比是否相等
 // var isPalindrome = function(s) {
-//   // 过滤其它字符，只留字母数字
+//   // 过滤掉除了字母数字的其它字符
 //   const data = s.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-//   let reverseString = '';
+//   let reverseStr = '';
 //   for (let i = data.length - 1; i >= 0; i--) {
-//     console.log(data.charAt(i));
-//     reverseString = reverseString.concat(data.charAt(i));
+//     reverseStr += data.charAt(i);
 //   }
 //
-//   return reverseString === data;
+//   return data === reverseStr;
 // };
 
 // 双指针
@@ -56,6 +55,25 @@ console.log(isPalindrome('dA man, a plan, a canal: Panama'))
 //     if (head !== tail) return false;
 //     j--;
 //     i++;
+//   }
+//
+//   return true;
+// };
+
+// 双指针识别字母左右比较 ，leetcode 超出时间限制，本地可以
+// var isPalindrome = function(s) {
+//   let i = 0;
+//   let j = s.length - 1;
+//   while (i < j) {
+//     // 从左边开始的指针过滤掉不是字母数字的字符
+//     while (!/[a-zA-Z0-9]/.test(s.charAt(i))) i++;
+//     // 从右边开始的指针过滤掉不是字母数字的字符
+//     while (!/[a-zA-Z0-9]/.test(s.charAt(j))) j--;
+//     // 如果左右指针指向的字符不同就不是回文串
+//     if (s.charAt(i).toLowerCase() !== s.charAt(j).toLowerCase()) return false;
+//
+//     i++;
+//     j--;
 //   }
 //
 //   return true;
