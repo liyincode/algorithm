@@ -36,19 +36,26 @@
  * @return {number}
  */
 var lengthOfLastWord = function(s) {
-    let end = s.length - 1;
-    // 过滤掉尾部空格
-    while (end >= 0 && s.charAt(end) === ' ') end--;
-    if (end < 0) return 0;
-    let start = end;
-    // 寻找最后一个单词
-    while (start >=0 && s.charAt(start) !== ' ') start--;
-    return end - start;
+
 };
+
 //leetcode submit region end(Prohibit modification and deletion)
 
-console.log(lengthOfLastWord('hello world'));
+console.log(lengthOfLastWord('hello world '));
 
+
+
+
+// var lengthOfLastWord = function(s) {
+//   let end = s.length - 1;
+//   // 过滤掉尾部空格
+//   while (end >= 0 && s.charAt(end) === ' ') end--;
+//   if (end < 0) return 0;
+//   let start = end;
+//   // 寻找最后一个单词
+//   while (start >= 0 && s.charAt(start) !== ' ') start--;
+//   return end - start;
+// };
 
 // 单指针法
 // var lengthOfLastWord = function(s) {
