@@ -51,7 +51,7 @@ var reverseWords = function(s) {
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
-console.log(reverseWords("b  a good   example"));
+console.log(reverseWords(" b  a good   example "));
 
 /*var reverseWords = function(s) {
   let arr = s.trim().split(' ');
@@ -115,3 +115,56 @@ console.log(reverseWords("b  a good   example"));
 //
 //     return arr.join(' ');
 // };
+
+// 先翻转整体，再翻转其中的单词
+// var reverseWords = function(s) {
+//   let result = '';
+//   // 先翻转全部
+//   let i = s.length - 1;
+//   while(i >= 0) {
+//     // 过滤空格
+//     while(i >= 0 && s.charAt(i) === ' ') i--;
+//     // 碰到单词，将单词拼接
+//     while (i >= 0 && s.charAt(i) !== ' ') {
+//       result += s.charAt(i);
+//       i--;
+//     }
+//     // 每一次 for 循环就是一个单词
+//     result += ' ';
+//   }
+//
+//   result = result.trim();
+//
+//   // 再翻转单词
+//   let finalResult = '';
+//   let j = 0;
+//   for (let i = 0; i < result.length; i++) {
+//     if (result.charAt(i) === ' ') {
+//       // 截取单词
+//       const word = result.substring(j, i);
+//       // 翻转单个单词
+//       const reverseWord = handleReverseWord(word);
+//       finalResult += reverseWord + ' ';
+//       // 方便 substring 方法不截取到单词前的空格
+//       j = i + 1;
+//     }
+//
+//     // 当碰到末尾时，特殊处理
+//     if (i === result.length - 1) {
+//       const word = result.substring(j, i + 1);
+//       const reverseWord = handleReverseWord(word);
+//       finalResult += reverseWord;
+//     }
+//   }
+//
+//   return finalResult;
+// };
+//
+// const handleReverseWord = (word) => {
+//   let result = '';
+//   for (let i = word.length - 1; i >= 0; i--) {
+//     result += word.charAt(i);
+//   }
+//
+//   return result;
+// }
