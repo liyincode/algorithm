@@ -52,22 +52,6 @@
  * @return {ListNode}
  */
 var middleNode = function (head) {
-  // find length of the nodeList
-  let length = 0;
-  let current = head;
-  while (current !== null) {
-    length++;
-    current = current.next;
-  }
-
-  let current2 = head;
-  let k = 0;
-  while (k < Math.trunc(length / 2)) {
-    k++;
-    current2 = current2.next;
-  }
-
-  return current2;
 
 };
 //leetcode submit region end(Prohibit modification and deletion)
@@ -116,6 +100,35 @@ console.log(result);
 //         }
 //     }
 // };
+
+// var middleNode = function (head) {
+//   /*
+//   不能什么时候都用哨兵节点，数数这种就不用了，不然会导致算总数时多数一个
+//    */
+//   let length = 0;
+//   let curr = head;
+//   while (curr !== null) {
+//     length++;
+//     curr = curr.next;
+//   }
+//
+//   // 这里有个点是奇数的时候是中间那个，偶数的时候是中间两个的第二个
+//   // 这里长度 / 2 的值完美对应了从 0 下标开始数的那个节点，就不用特意区分奇数偶数了
+//   // trunc 暴力删除小数和小数之后的数
+//   let middleIndex = Math.trunc( length / 2);
+//   let tag = 0;
+//   let curr2 = head;
+//   while (curr2 !== null) {
+//     if (tag === middleIndex) {
+//       return curr2;
+//     }
+//     tag++;
+//     curr2 = curr2.next;
+//   }
+//
+//   return null;
+// };
+
 
 // 数组
 //var middleNode = function (head) {
