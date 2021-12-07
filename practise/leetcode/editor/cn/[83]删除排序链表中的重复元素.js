@@ -1,4 +1,4 @@
-//存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除所有重复的元素，使每个元素 只出现一次 。
+ //存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除所有重复的元素，使每个元素 只出现一次 。
 //
 // 返回同样按升序排列的结果链表。
 //
@@ -164,3 +164,26 @@ display(result);
 //
 //   return newHead.next;
 // };
+
+ // 提取需要比对的值
+ // var deleteDuplicates = function(head) {
+ //   if (head === null) return null;
+ //
+ //   let curr = head;
+ //   /**
+ //    * 这里的思路是，每次记录下要比对的值，然后遍历的时候看下一个节点的值是不是和它相同，相同的话就删掉，
+ //    * 不同的话，记录下下一个节点的值再比对
+ //    * 反正 **每次相同的节点只留下第一个**
+ //    */
+ //   let target = head.val;
+ //   while (curr.next !== null) {
+ //     if (curr.next.val === target) {
+ //       curr.next = curr.next.next
+ //     } else {
+ //       curr = curr.next;
+ //       target = curr.val;
+ //     }
+ //   }
+ //
+ //   return head;
+ // };
