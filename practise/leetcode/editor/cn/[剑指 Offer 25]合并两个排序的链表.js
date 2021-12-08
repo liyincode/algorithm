@@ -23,10 +23,10 @@
  * }
  */
 
- function ListNode(val) {
-     this.val = val;
-     this.next = null;
- }
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
 
 /**
  * @param {ListNode} l1
@@ -35,7 +35,7 @@
  */
 var mergeTwoLists = function(l1, l2) {
 
-};
+  }
 //leetcode submit region end(Prohibit modification and deletion)
 
 let node1 = new ListNode(1);
@@ -61,7 +61,7 @@ function display(head) {
   }
 }
 
-// 新创建一个结果链表
+// 穿针引线法
 // var mergeTwoLists = function(l1, l2) {
 //     if (!l1) return l2;
 //     if (!l2) return l1;
@@ -88,3 +88,35 @@ function display(head) {
 //
 //     return newHead.next;
 // };
+
+// var mergeTwoLists = function(l1, l2) {
+//   /**
+//    * 这个方法中的新链表的指针与 l1 l2 链表的指针完全分开，不混在一起
+//    */
+//   if (!l1) return l2;
+//   if (!l2) return l1;
+//   let newNode = new ListNode(0);
+//   let curr = newNode;
+//
+//   let first = l1;
+//   let second = l2;
+//
+//   while (first !== null && second !== null) {
+//     if (first.val <= second.val) {
+//       curr.next = first;
+//       first = first.next;
+//     } else {
+//       curr.next = second;
+//       second = second.next;
+//     }
+//
+//     // 等于删掉了刚加入到结构链表的节点后面的节点
+//     curr.next.next = null;
+//     curr = curr.next;
+//   }
+//
+//   if (first) curr.next = first;
+//   if (second) curr.next = second;
+//
+//   return newNode.next;
+// }
