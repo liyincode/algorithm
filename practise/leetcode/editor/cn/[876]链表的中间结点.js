@@ -171,3 +171,17 @@ console.log(result);
 //   return current2;
 //
 // };
+
+// 快慢指针法
+// var middleNode = function (head) {
+//     // 快慢指针
+//     let fast = head;
+//     let slow = head;
+//
+//     while (fast && fast.next) {
+//         fast = fast.next.next;
+//         slow = slow.next;
+//     }
+//
+//     return slow;
+// };
