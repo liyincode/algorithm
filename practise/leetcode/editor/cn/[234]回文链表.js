@@ -30,42 +30,8 @@
  * @return {boolean}
  */
 var isPalindrome = function (head) {
-    const midNode = findMidNode(head);
-    const reversedLinkedList = reverse(midNode.next);
-    let p = head;
-    let q = reversedLinkedList;
-    while (q) {
-        if (p.val !== q.val) return false
-        q = q.next;
-        p = p.next;
-    }
-
-    return true;
 };
 
-const findMidNode = function (head) {
-    let slow = head;
-    let fast = head;
-    while (fast.next && fast.next.next) {
-        fast = fast.next.next;
-        slow = slow.next;
-    }
-
-    return slow;
-}
-
-const reverse = function (head) {
-    let newHead = null;
-    let curr = head;
-    while (curr) {
-        let tmp = curr.next;
-        curr.next = newHead;
-        newHead = curr;
-        curr = tmp;
-    }
-
-    return newHead;
-}
 
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -96,3 +62,48 @@ function display(head) {
         curr = curr.next;
     }
 }
+
+//var isPalindrome = function (head) {
+//     // 找到中间节点
+//     let middleNode = findMiddleNode(head);
+//     // 翻转中间节点后端的链表
+//     let rightHalfNode = reverse(middleNode.next);
+//     // 互相比对
+//     let p = head;
+//     let q = rightHalfNode;
+//     // 只需要后面的指针不等于 null 就行
+//     while (q) {
+//         if (p.val !== q.val) return false
+//         p = p.next;
+//         q = q.next;
+//     }
+//
+//     return true;
+// };
+//
+// const findMiddleNode = (head) => {
+//     if (head.next === null) return head;
+//     let slow = head;
+//     let fast = head.next;
+//     // 偶数判断条件 fast.next.next
+//     // 奇数判断条件 fast.next
+//     while (fast.next && fast.next.next) {
+//         slow = slow.next;
+//         fast = fast.next.next;
+//     }
+//
+//     return slow;
+// }
+//
+// const reverse = (head) => {
+//     let newHead = new ListNode();
+//     let curr = head;
+//     while (curr) {
+//         let temp = curr.next;
+//         curr.next = newHead.next;
+//         newHead.next = curr;
+//         curr = temp;
+//     }
+//
+//     return newHead.next;
+// }
