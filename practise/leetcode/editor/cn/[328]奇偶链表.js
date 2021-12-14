@@ -51,16 +51,16 @@ let node2 = new ListNode(2);
 let node3 = new ListNode(3);
 let node4 = new ListNode(4);
 let node5 = new ListNode(5);
-let node6 = new ListNode(6);
-let node7 = new ListNode(7);
-let node8 = new ListNode(8);
+// let node6 = new ListNode(6);
+// let node7 = new ListNode(7);
+// let node8 = new ListNode(8);
 node1.next = node2;
 node2.next = node3;
 node3.next = node4;
 node4.next = node5;
-node5.next = node6;
-node6.next = node7;
-node7.next = node8;
+// node5.next = node6;
+// node6.next = node7;
+// node7.next = node8;
 
 
 const result = oddEvenList(node1);
@@ -74,30 +74,37 @@ function display(head) {
     }
 }
 
-//var oddEvenList = function (head) {
-//     let oddList = new ListNode();
+// var oddEvenList = function (head) {
+//     // 奇数链表
+//     const oddList = new ListNode('odd');
+//     // 奇数链表尾指针
 //     let oddTail = oddList;
-//     let evenList = new ListNode();
+//     // 偶数链表
+//     const evenList = new ListNode('even');
+//     // 偶数链表尾指针
 //     let evenTail = evenList;
 //     let curr = head;
+//     let tag = 1;
 //
-//     let count = 1;
 //     while (curr) {
-//         const tmp = curr.next;
-//         if (count % 2 === 0) {
-//             curr.next = null;
+//         // 缓存下个节点
+//         const temp = curr.next;
+//         // 1 是保证单一原则，只拿出一个
+//         // 2 是防止奇数个数链表会形成环形链表
+//         curr.next = null;
+//         if (tag % 2 === 0) {
 //             evenTail.next = curr;
-//             evenTail = curr;
+//             evenTail = evenTail.next;
 //         } else {
-//             curr.next = null;
 //             oddTail.next = curr;
-//             oddTail = curr;
+//             oddTail = oddTail.next;
 //         }
 //
-//         count++;
-//         curr = tmp;
+//         tag++;
+//         curr = temp;
 //     }
 //
+//     // 如果在刚才 curr.next 没有置为 null 的话，这一步会形成环形链表，如 12345，这里就会形成 13524524524... 524 循环
 //     oddTail.next = evenList.next;
 //     return oddList.next;
 // };
