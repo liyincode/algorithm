@@ -34,25 +34,7 @@ function ListNode(val) {
  * @return {ListNode}
  */
 var getKthFromEnd = function(head, k) {
-  if (!head || k <= 0) return null;
 
-  let slow = head;
-  let fast = head;
-
-  // fast 先走 k 步
-  let count = 0;
-  while (count < k) {
-    count++;
-    fast = fast.next
-  }
-
-  // slow fast 同时走一步，直到 fast 为 null
-  while (fast) {
-    fast = fast.next;
-    slow = slow.next;
-  }
-
-  return slow;
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -61,17 +43,17 @@ let node2 = new ListNode(2);
 let node3 = new ListNode(3);
 let node4 = new ListNode(4);
 let node5 = new ListNode(5);
-let node6 = new ListNode(6);
+// let node6 = new ListNode(6);
 node1.next = node2;
 node2.next = node3;
 node3.next = node4;
 node4.next = node5;
-node5.next = node6;
+// node5.next = node6;
 
 function display(head) {
   let curr = head;
   while (curr !== null) {
-    console.log(curr);
+    console.log(curr.val);
     curr = curr.next;
   }
 }
@@ -110,18 +92,21 @@ console.log('result = ', result);
 // 快慢指针
 //var getKthFromEnd = function(head, k) {
 //   if (!head || k <= 0) return null;
+//   if (head.next === null) return head;
 //
-//   let slow = head;
+//   /*
+//   快慢指针之间的间隔就相当于最后结果离目标节点和最后一个节点指向的 null 的间隔
+//    */
 //   let fast = head;
+//   let slow = head;
 //
-//   // fast 先走 k 步
 //   let count = 0;
 //   while (count < k) {
 //     count++;
-//     fast = fast.next
+//     fast = fast.next;
 //   }
 //
-//   // slow fast 同时走一步，直到 fast 为 null
+//   // 慢慢一起向前移动，直到 fast 指针指向 null
 //   while (fast) {
 //     fast = fast.next;
 //     slow = slow.next;
@@ -130,3 +115,25 @@ console.log('result = ', result);
 //   return slow;
 // };
 
+// var getKthFromEnd = function(head, k) {
+//   // 计算链表总个数
+//   let count = 0;
+//   let curr = head;
+//   while (curr) {
+//     count++;
+//     curr = curr.next;
+//   }
+//
+//   // 找目标节点，举例 1 2 3 4 5 ，找倒数第 2 个，就是找顺数第 2 个节点 的.next节点
+//   let targetIndex = count - k;
+//   if (targetIndex === 0) return head;
+//   let index = 1;
+//   curr = head;
+//   while (curr) {
+//     if (index === targetIndex) return curr.next;
+//     curr = curr.next;
+//     index++;
+//   }
+//
+//   return null;
+// };
