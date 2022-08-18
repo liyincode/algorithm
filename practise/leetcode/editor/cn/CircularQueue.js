@@ -26,6 +26,18 @@ class CircularQueue {
         this.#count++
     }
 
+    enqueueEasy(value) {
+        if ((this.#tail + 1) % this.#length === this.#head) {
+            console.log('队列已满，无法放入', value)
+            return false;
+        }
+
+        this.#items[this.#tail] = value
+        this.#tail = (this.#tail + 1) % this.#length
+        this.#count++
+        return value;
+    }
+
     dequeue() {
         if (this.#count === 0) {
             console.log('队列为空')
@@ -40,6 +52,19 @@ class CircularQueue {
         } else {
             this.#head++
         }
+
+        return value
+    }
+
+    dequeueEasy() {
+        if (this.#head === this.#tail) {
+            console.log('队列为空')
+            return false
+        }
+
+        const value = this.#items[this.#head]
+        this.#head = (this.#head + 1) % this.#length
+        this.#count--
 
         return value
     }
@@ -70,16 +95,28 @@ class CircularQueue {
 }
 
 let queue = new CircularQueue(7)
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.enqueue(4)
-queue.enqueue(5)
-queue.enqueue(6)
-queue.enqueue(7)
-queue.enqueue(8)
+// queue.enqueue(1)
+// queue.enqueue(2)
+// queue.enqueue(3)
+// queue.enqueue(4)
+// queue.enqueue(5)
+// queue.enqueue(6)
+// queue.enqueue(7)
+// queue.enqueue(8)
 // queue.enqueue(8)
 
 // queue.dequeue()
+
+queue.enqueueEasy(1)
+queue.enqueueEasy(2)
+queue.enqueueEasy(3)
+queue.enqueueEasy(4)
+queue.enqueueEasy(5)
+queue.enqueueEasy(6)
+queue.enqueueEasy(7)
+
+queue.dequeueEasy()
+
+queue.enqueueEasy(8)
 
 queue.display()
