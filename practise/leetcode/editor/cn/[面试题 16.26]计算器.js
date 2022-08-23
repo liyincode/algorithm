@@ -35,135 +35,6 @@
  * @return {number}
  */
 var calculate = function(s) {
-    // 如 s = '2'
-    if (s.length === 1) {
-        return Number(s)
-    }
-
-    // 判断是否为运算符
-    const isOperator = val => ['+', '-', '*', '/'].includes(val)
-
-    // 转换为数组
-    const strArr = s.split('')
-    const handleArr = []
-
-    // 如 s = '32+54' strArr = ['3', '2', '+', '5', '4'] 转化为 handleArr = ['32', '+', '54']
-    let block = ''
-    for (let i = 0, j = 0; j < strArr.length;) {
-        if (isOperator(strArr[j])) {
-            handleArr.push(block)
-            handleArr.push(strArr[j])
-            i = j + 1
-            j = j + 2
-            block = strArr[i]
-        } else {
-            block = block + strArr[j]
-            j++
-        }
-    }
-    handleArr.push(block)
-
-    // 如 s = '32' handleArr = ['32']
-    if (handleArr.length === 1) {
-        return Number(s)
-    }
-
-    // 存放数字的栈
-    const numberStack = []
-    // 存放运算符的栈
-    const operatorStack = []
-
-    // 将运算符放在运算符栈，将数字放在数字栈
-    const pushItem = target => {
-        if (isOperator(target)) {
-            operatorStack.push(target)
-        } else {
-            numberStack.push(Number(target))
-        }
-    }
-
-    // 计算数字栈顶两个数字和运算符栈顶一个运算符的结果
-    const calVal = () => {
-        console.log('calVal ', numberStack)
-        let result = 0
-        const b = Number(numberStack.pop())
-        const operate = operatorStack.pop()
-        const a = Number(numberStack.pop())
-
-        if (operate === '+') {
-            result = a + b
-        } else if (operate === '-') {
-            result = a - b
-        } else if (operate === '*') {
-            result = a * b
-        } else if (operate === '/') {
-            result = Math.floor(a / b)
-        }
-
-        console.log(a, operate, b, result)
-        // 将计算结果压入数字栈
-        numberStack.push(result)
-    }
-
-    console.log('handleArr ', handleArr)
-
-    for (let i = 0; i < handleArr.length; i++) {
-        const target = handleArr[i]
-        console.log('target', target)
-
-        if (isOperator(target)) {
-            if (operatorStack.length) {
-                if (numberStack.length === 2) {
-                    console.log(2222, target)
-                    const topOperator = operatorStack[operatorStack.length - 1]
-                    // 当前运算符的优先级低于运算符栈顶的运算符
-                    if (
-                        (['+', '-'].includes(topOperator) && ['+', '-'].includes(target))
-                        ||
-                        (['*', '/'].includes(topOperator) && ['*', '/'].includes(target))
-                        ||
-                        (['*', '/'].includes(topOperator) && ['+', '-'].includes(target))
-                    ) {
-                        calVal()
-                        pushItem(target)
-                    }
-
-                    // 当前运算符的优先级高于运算符栈顶的运算符时，不能计算还得把之后的数字放进来再看
-                    if (
-                        (['+', '-'].includes(topOperator) && ['*', '/'].includes(target))
-                    ) {
-                        pushItem(target)
-                    }
-                } else if (numberStack.length === 3) {
-                    console.log(333, target)
-                    calVal()
-
-                    // 如 '3+2*3+'，当计算完 2*3 后，发现下一个运算符是 '+' 低优先级，就把 3 + 6（刚才的乘积）算一下
-                    if (['+', '-'].includes(target)) {
-                        calVal()
-                    }
-
-                    pushItem(target)
-                }
-            } else {
-                pushItem(target)
-            }
-        } else {
-            pushItem(target)
-        }
-
-        console.log(numberStack, operatorStack)
-    }
-
-    // 当 s = '3+2*2' ,上面的代码只放入了各自栈，但并没有计算
-    if (operatorStack.length) {
-        calVal()
-    }
-    if (operatorStack.length) {
-        calVal()
-    }
-
-    return numberStack.pop()
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
@@ -249,6 +120,15 @@ console.log(calculate('1*2-3/4+5*6-7*8+9/10'))
 //         numberStack.push(result)
 //     }
 //
+//     // 判断运算符优先级
+//     const prior = (a, b) => {
+//         if ((a === '*' || a === '/') && (b === '+' || b === '-')) {
+//             return true
+//         }
+//
+//         return false
+//     }
+//
 //     console.log('handleArr ', handleArr)
 //
 //     for (let i = 0; i < handleArr.length; i++) {
@@ -260,22 +140,12 @@ console.log(calculate('1*2-3/4+5*6-7*8+9/10'))
 //                 if (numberStack.length === 2) {
 //                     console.log(2222, target)
 //                     const topOperator = operatorStack[operatorStack.length - 1]
-//                     // 当前运算符的优先级低于运算符栈顶的运算符
-//                     if (
-//                         (['+', '-'].includes(topOperator) && ['+', '-'].includes(target))
-//                         ||
-//                         (['*', '/'].includes(topOperator) && ['*', '/'].includes(target))
-//                         ||
-//                         (['*', '/'].includes(topOperator) && ['+', '-'].includes(target))
-//                     ) {
-//                         calVal()
-//                         pushItem(target)
-//                     }
 //
 //                     // 当前运算符的优先级高于运算符栈顶的运算符时，不能计算还得把之后的数字放进来再看
-//                     if (
-//                         (['+', '-'].includes(topOperator) && ['*', '/'].includes(target))
-//                     ) {
+//                     if (prior(target, topOperator)) {
+//                         pushItem(target)
+//                     } else {
+//                         calVal()
 //                         pushItem(target)
 //                     }
 //                 } else if (numberStack.length === 3) {
