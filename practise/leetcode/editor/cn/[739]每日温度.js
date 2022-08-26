@@ -41,7 +41,36 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(temperatures) {
+    const data = temperatures.map((item, index) => {
+        return {
+            value: item,
+            index
+        }
+    })
+    const result = Array.from({length: temperatures.length}, () => 0)
+    let stack = [data[0]]
 
+    for (let i = 1; i < data.length; i++) {
+        const target = data[i]
+
+        const compare = () => {
+            const stackTop = stack[stack.length - 1]
+
+            if (target.value > stackTop.value) {
+                result[stackTop.index] = target.index - stackTop.index
+                stack.pop()
+
+                if (stack.length) {
+                    compare()
+                }
+            }
+        }
+        compare()
+
+        stack.push(target)
+    }
+
+    return result
 };
 //leetcode submit region end(Prohibit modification and deletion)
 
