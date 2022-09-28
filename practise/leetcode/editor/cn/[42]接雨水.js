@@ -86,3 +86,41 @@ console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 //
 //   return sum
 // }
+
+/*
+    思路：是暴力法的优化版，空间换时间，降低到 O(n) 的时间复杂度
+    先将当前元素的左边最大值和右边最大值都计算好，分别放入相应的数组
+    最后算每个柱子的盛水量时，直接按照索引在对应数组中取值计算即可
+ */
+// const trap = function (height) {
+//   // 计算好所有左边最大值的数组
+//   const leftMaxArr = [0]
+//   for (let i = 1; i < height.length; i++) {
+//     if (height[i - 1] > leftMaxArr[i - 1]) {
+//       leftMaxArr.push(height[i - 1])
+//     } else {
+//       leftMaxArr.push(leftMaxArr[i - 1])
+//     }
+//   }
+//
+//   // 计算好所有右边最大值的数组
+//   const rightMaxArr = Array.from({ length: height.length }, () => null)
+//   rightMaxArr[height.length - 1] = 0
+//   for (let i = height.length - 2; i >= 0; i--) {
+//     if (height[i + 1] > rightMaxArr[i + 1]) {
+//       rightMaxArr[i] = height[i + 1]
+//     } else {
+//       rightMaxArr[i] = rightMaxArr[i + 1]
+//     }
+//   }
+//
+//   let sum = 0
+//   for (let i = 1; i < height.length - 1; i++) {
+//     const currSum = (leftMaxArr[i] < rightMaxArr[i] ? leftMaxArr[i] : rightMaxArr[i]) - height[i]
+//     if (currSum > 0) {
+//       sum = sum + currSum
+//     }
+//   }
+//
+//   return sum
+// }
