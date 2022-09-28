@@ -40,6 +40,26 @@
  * @return {boolean}
  */
 const validateStackSequences = function (pushed, popped) {
+  const stack = []
+  let i = 0
+  let j = 0
+
+  while (i < pushed.length || j < popped.length) {
+    if (stack.length > 0 && j < popped.length && stack[stack.length - 1] === popped[j]) {
+      stack.pop()
+      j++
+      continue
+    }
+
+    if (i < pushed.length) {
+      stack.push(pushed[i])
+      i++
+      continue
+    }
+    break
+  }
+
+  return i === pushed.length && j === pushed.length
 }
 // leetcode submit region end(Prohibit modification and deletion)
 
@@ -111,4 +131,34 @@ console.log(validateStackSequences([2, 1, 0], [1, 2, 0]))
 //
 //   // 如果处理完之后，栈里还有元素，说明这个序列不合理
 //   return stack.length === 0
+// }
+
+/*
+ 思路：
+ 入栈和出栈的操作次数肯定是相等的
+ 每次不是入栈就是出栈，记录下操作次数，最后比较
+ */
+// const validateStackSequences = function (pushed, popped) {
+//   const stack = []
+//   let i = 0
+//   let j = 0
+//
+//   while (i < pushed.length || j < popped.length) {
+//     if (stack.length > 0 && j < popped.length && stack[stack.length - 1] === popped[j]) {
+//       stack.pop()
+//       j++
+//       continue
+//     }
+//
+//     if (i < pushed.length) {
+//       stack.push(pushed[i])
+//       i++
+//       continue
+//     }
+//
+//     // 如果既不入栈又不出栈，结束循环
+//     break
+//   }
+//
+//   return i === pushed.length && j === pushed.length
 // }
