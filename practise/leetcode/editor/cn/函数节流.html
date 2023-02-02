@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数节流</title>
+</head>
+<body>
+<input type="text" id="throttle">
+</body>
+
+<script>
+  function throttle(fun, delay) {
+      let last, timeoutID
+
+      return function (args) {
+          const that = this
+          const now = new Date().getTime()
+
+          if (last && now < last + delay) {
+              clearTimeout(timeoutID)
+              timeoutID = setTimeout(
+                  () => {
+                      last = now
+                      fun.call(that, args)
+                  },
+                  delay
+              )
+          } else {
+              last = now
+              fun.call(that, args)
+          }
+      }
+  }
+
+  const dom = document.getElementById('throttle')
+
+  const dAjax = throttle(ajax, 1000)
+
+  dom.addEventListener('keyup', e => {
+      dAjax(e.target.value)
+  })
+
+  function ajax(content) {
+      console.log('request------------------ ', content)
+  }
+</script>
+</html>
