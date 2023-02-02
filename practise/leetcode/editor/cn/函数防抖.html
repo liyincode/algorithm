@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数防抖</title>
+</head>
+<body>
+<input type="text" id="debounce">
+</body>
+
+<script>
+  function debounce(fun, delay) {
+      return function (args) {
+          let that = this
+          clearTimeout(fun.id)
+          fun.id = setTimeout(
+              () => {
+                  fun.call(that, args)
+              },
+              delay
+          )
+      }
+  }
+
+  const dom = document.getElementById('debounce')
+
+  const dAjax = debounce(ajax, 500)
+
+  dom.addEventListener('keyup', e => {
+      dAjax(e.target.value)
+  })
+
+  function ajax(content) {
+      console.log('request, ', content)
+  }
+</script>
+</html>
