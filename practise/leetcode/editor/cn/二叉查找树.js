@@ -12,6 +12,14 @@ class Node {
     }
 }
 
+function display(node) {
+    if (!node) {
+        return;
+    }
+    console.log(node.data)
+    display(node.left)
+    display(node.right)
+}
 
 let node7 = new Node(7, null, null)
 let node13 = new Node(13, null, null)
@@ -45,7 +53,7 @@ function reFind(node, data) {
 // let targetNode = reFind(node15, 10)
 // console.log(targetNode)
 
-//
+// 迭代查询
 function find(node, data) {
     while (node) {
         console.log(node.data)
@@ -60,7 +68,56 @@ function find(node, data) {
             node = node.left;
         }
     }
-  return null;
+    return null;
 }
-let targetNode2 = find(node15, 20)
-console.log(targetNode2)
+
+// let targetNode2 = find(node15, 20)
+// console.log(targetNode2)
+
+// 递归插入
+function reInsert(node, data) {
+    if (data < node.data) {
+        if (!node.left) {
+            let newNode = new Node(data, null, null)
+            node.left = newNode
+        } else {
+            reInsert(node.left, data)
+        }
+    } else {
+       if (!node.right) {
+           let newNode = new Node(data, null, null)
+           node.right = newNode;
+       } else {
+           reInsert(node.right, data)
+       }
+    }
+}
+
+// 迭代插入
+function insert(node, data) {
+    let newNode = new Node(data, null, null)
+    let curr = node
+    while (curr) {
+        if (data < curr.data) {
+            if (!curr.left) {
+                curr.left = newNode
+                return
+            }
+            curr = curr.left
+        } else {
+            if (!curr.right) {
+                curr.right = newNode
+                return
+            }
+            curr = curr.right
+        }
+    }
+
+}
+
+display(node15)
+console.log('------------------------------')
+// reInsert(node15, 8)
+
+insert(node15, 8)
+display(node15)
