@@ -45,6 +45,23 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class RecentCounter {
+    constructor() {
+    }
+
+    ping(t: number){
+    }
+
+}
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter()
+ * var param_1 = obj.ping(t)
+ */
+//leetcode submit region end(Prohibit modification and deletion)
+
+    /*
+class RecentCounter {
     private requests: number[];
 
     constructor() {
@@ -64,10 +81,4 @@ class RecentCounter {
     }
 
 }
-
-/**
- * Your RecentCounter object will be instantiated and called as such:
- * var obj = new RecentCounter()
- * var param_1 = obj.ping(t)
- */
-//leetcode submit region end(Prohibit modification and deletion)
+*/
